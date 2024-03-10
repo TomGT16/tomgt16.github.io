@@ -1,7 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagramme de Sankey interactif</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <div id="sankey_basic" style="width: 900px; height: 300px;"></div>
+    <script>
+        google.charts.load('current', {'packages':['sankey']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'From');
+            data.addColumn('string', 'To');
+            data.addColumn('number', 'Weight');
+            data.addRows([
+                [ 'Rivière-des-Prairies-Pointe-aux-Trembles', 'Mercier-Hochelaga-Maisonneuve.', 10 ],
+                [ 'Rivière-des-Prairies-Pointe-aux-Trembles', 'Anjou.', 5 ],
+                [ 'Montréal-Nord', 'Villeray-Saint-Michel-Parc-Extension.', 8 ],
+                [ 'Montréal-Nord', 'Ahuntsic-Cartierville.', 7 ],
+                [ 'Ahuntsic-Cartierville', 'Saint-Laurent.', 24 ],
+                [ 'Ahuntsic-Cartierville', 'Villeray-Saint-Michel-Parc-Extension.', 22 ],
+                [ 'Anjou', 'Mercier-Hochelaga-Maisonneuve.', 15 ],
+                [ 'Anjou', 'Saint-Léonard.', 12 ],
+                [ 'Saint-Léonard', 'Mercier-Hochelaga-Maisonneuve.', 10 ],
+                [ 'Saint-Léonard', 'Anjou.', 9 ],
+                [ 'Villeray-Saint-Michel-Parc-Extension', 'Rosemont-La Petite-Patrie.', 31 ],
+                [ 'Villeray-Saint-Michel-Parc-Extension', 'Ahuntsic-Cartierville.', 24 ],
+                [ 'Outremont', 'Plateau Mont-Royal.', 6 ],
+                [ 'Outremont', 'Ahuntsic-Cartierville.', 3 ],
+                [ 'Côte-des-Neiges-Notre-Dame-de-Grâce', 'Ville-Marie.', 37 ],
+                [ 'Côte-des-Neiges-Notre-Dame-de-Grâce', 'Plateau Mont-Royal.', 22 ],
+                [ 'Mercier-Hochelaga-Maisonneuve', 'Ville-Marie.', 36 ],
+                [ 'Mercier-Hochelaga-Maisonneuve', 'Rosemont-La Petite-Patrie.', 32 ],
+                [ 'Rosemont-La Petite-Patrie', 'Plateau Mont-Royal.', 66 ],
+                [ 'Rosemont-La Petite-Patrie', 'Mercier-Hochelaga-Maisonneuve.', 36 ],
+                [ 'Plateau Mont-Royal', 'Ville-Marie.', 72 ],
+                [ 'Plateau Mont-Royal', 'Rosemont-La Petite-Patrie.', 60 ],
+                [ 'Ville-Marie', 'Plateau Mont-Royal.', 73 ],
+                [ 'Ville-Marie', 'Mercier-Hochelaga-Maisonneuve.', 49 ],
+                [ 'Sud-Ouest', 'Ville-Marie.', 38 ],
+                [ 'Sud-Ouest', 'Plateau Mont-Royal.', 18 ],
+                [ 'Verdun', 'Sud-Ouest.', 18 ],
+                [ 'Verdun', 'Ville-Marie.', 16 ],
+                [ 'LaSalle', 'Sud-Ouest.', 14 ],
+                [ 'LaSalle', 'Verdun.', 6 ],
+                [ 'Île-Bizard-Sainte-Geneviève', 'Pierrefonds-Roxboro.', 1 ],
+                [ 'Saint-Laurent', 'Ahuntsic-Cartierville.', 27 ],
+                [ 'Saint-Laurent', 'Côte-des-Neiges-Notre-Dame-de-Grâce.', 14 ],
+                [ 'Pierrefonds-Roxboro', 'Saint-Laurent.', 2 ],
+                [ 'Pierrefonds-Roxboro', 'Ahuntsic-Cartierville.', 1 ],
+                [ 'Lachine', 'Ville-Marie.', 7 ],
+                [ 'Lachine', 'LaSalle.', 5 ],
+            ]);
+
+            var options = {
+                width: 900,
+                height: 300
+            };
+
+            var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+            chart.draw(data, options);
+        }
+    </script>
 </body>
 </html>
